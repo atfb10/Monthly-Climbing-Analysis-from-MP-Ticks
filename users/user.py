@@ -16,7 +16,7 @@ class MpUser:
         self.username = username
         self.userid = userid
         self.user_tick_url = f'{self.BASE_URL}{userid}/{username}{self.TICK}'
-        self.user_tick_export_url = f'{self.BASE_URL}{userid}{username}{self.TICK_EXPORT}'
+        self.user_tick_export_url = f'{self.BASE_URL}{userid}/{username}{self.TICK_EXPORT}'
 
     def __repr__(self) -> str:
         '''

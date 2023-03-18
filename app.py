@@ -1,9 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import pandas as pd
 
 from credentials import (
-    chromedriver_path,
-    test_user
+    test_user,
+    test_user1
 )
 
-# chrome = webdriver.Chrome(executable_path=chromedriver_path)
+tick_data = pd.read_csv(test_user1.user_tick_export_url)
+file_name = f'{test_user1.username}-ticks.csv'
+tick_data.to_csv(file_name, index=False)
