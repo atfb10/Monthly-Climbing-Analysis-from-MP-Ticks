@@ -6,6 +6,8 @@ Description: user contains the User class that ticks are downloaded for
 
 class MpUser:
     BASE_URL = 'https://www.mountainproject.com/user/'
+    TICK = '/ticks'
+    TICK_EXPORT = '/tick-export'
 
     def __init__(self, username: str, userid=int):
         '''
@@ -13,7 +15,8 @@ class MpUser:
         '''
         self.username = username
         self.userid = userid
-        self.user_tick_url = f'{self.BASE_URL}{userid}/{username}/ticks'
+        self.user_tick_url = f'{self.BASE_URL}{userid}/{username}{self.TICK}'
+        self.user_tick_export_url = f'{self.BASE_URL}{userid}{username}{self.TICK_EXPORT}'
 
     def __repr__(self) -> str:
         '''
