@@ -5,6 +5,7 @@ Description: user_addition_removal.py allows an administrator to add, list and r
 '''
 
 from database import db
+from helpers.files import make_user_files_folder
 from users.user import MpUser
 
 USER_OPTIONS = '''
@@ -29,6 +30,7 @@ def menu(menu_options=USER_OPTIONS) -> None:
             user_email = input('Enter user email: ')
             new_user = MpUser(userid=userid, username=username, email=user_email)
             db.insert(new_user)
+            make_user_files_folder(new_user)
         elif admin_selection == 'l':
             db.list_users()
         elif admin_selection == 'd':

@@ -12,10 +12,11 @@ def get_user_ticks(user: MpUser) -> None:
     '''
     arguments: MpUser object
     returns: nothing
-    description: get_user_ticks() takes in a user object and returns
+    description: get_user_ticks() downloads a user's ticks as a csv from mountainproject.com and then moves the csv to the appropriate folder
     '''
     df = pd.read_csv(user.user_tick_export_url)
     df.to_csv(user.csv_filename, index=False)
+    move_user_csv(user)
     return
 
 def move_user_csv(user: MpUser) -> None:
