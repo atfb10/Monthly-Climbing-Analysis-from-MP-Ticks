@@ -9,14 +9,16 @@ class MpUser:
     TICK = '/ticks'
     TICK_EXPORT = '/tick-export'
 
-    def __init__(self, username: str, userid=int):
+    def __init__(self, userid: int, username: str, email: str):
         '''
         every mountain project user has a userid and username
         '''
-        self.username = username
         self.userid = userid
+        self.username = username
+        self.email = email
         self.user_tick_url = f'{self.BASE_URL}{userid}/{username}{self.TICK}'
         self.user_tick_export_url = f'{self.BASE_URL}{userid}/{username}{self.TICK_EXPORT}'
+        self.csv_filename = f'{username}-monthly-ticks'
 
     def __repr__(self) -> str:
         '''
