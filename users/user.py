@@ -1,6 +1,6 @@
 '''
 Author: Adam Forestier
-Date: March 17, 2023
+Date: March 20, 2023
 Description: user contains the User class that ticks are downloaded for
 '''
 
@@ -18,7 +18,7 @@ class MpUser:
         self.email = email
         self.user_tick_url = f'{self.BASE_URL}{userid}/{username}{self.TICK}'
         self.user_tick_export_url = f'{self.BASE_URL}{userid}/{username}{self.TICK_EXPORT}'
-        self.csv_filename = f'{username}-monthly-ticks'
+        self.csv_filename = f'{username}-monthly-ticks.csv'
 
     def __repr__(self) -> str:
         '''
