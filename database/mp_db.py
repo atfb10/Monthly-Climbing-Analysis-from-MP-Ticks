@@ -6,7 +6,7 @@ Description: db.py
 from typing import List
 
 from .db_connection import DatabaseConnection
-from ..users.user import MpUser
+from users.user import MpUser
 
 HOST = 'data.db'
 
@@ -31,14 +31,7 @@ def insert(user: MpUser) -> None:
     '''
     with DatabaseConnection(HOST) as connection:
         cursor = connection.cursor()
-        cursor.execute(
-            'INSERT INTO USERS(?, ?, ?, ?, ?, ?)', (
-            user.userid, user.username, 
-            user.email, user.user_tick_url, 
-            user.user_tick_export_url, 
-            user.csv_filename
-            )
-        )
+        cursor.execute('INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?)', (user.userid, user.username, user.email, user.user_tick_url, user.user_tick_export_url, user.csv_filename))
     return
 
 def get_users() -> List[MpUser]:
@@ -64,7 +57,7 @@ def list_users() -> None:
         cursor.execute('SELECT username, userid FROM USERS')    
         all_users = cursor.fetchall()     
     for user in all_users:
-        print(f'User {all_users[user][1]} -> {all_users[user][0]}')
+        print(f'User {user[0]} -> {user[1]}')
     return
 
 def delete(username: str) -> None:
