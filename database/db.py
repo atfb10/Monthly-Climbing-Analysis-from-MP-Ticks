@@ -3,7 +3,7 @@ Author: Adam Forestier
 Date: March 20, 2023
 Description: db.py 
 '''
-import sqlite3 as sql
+from typing import List
 
 from .db_connection import DatabaseConnection
 from ..users.user import MpUser
@@ -40,6 +40,18 @@ def insert(user: MpUser) -> None:
             )
         )
     return
+
+def get_users() -> List[MpUser]:
+    '''
+    arguments: None
+    returns: List of MpUser objects
+    description: get_users() lists all users by their id and username in the terminal
+    '''
+    with DatabaseConnection(HOST) as connection:
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM USERS')    
+        all_users = cursor.fetchall() 
+    return all_users
 
 def list_users() -> None:
     '''
