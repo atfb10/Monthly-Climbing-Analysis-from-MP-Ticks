@@ -5,7 +5,7 @@ Description: db_connection contains a context manager for the projects SQLite3 d
 '''
 
 import sqlite3 as sql
-.
+
 class DatabaseConnection:
     def __init__(self, host) -> None:
         self.connection = None
