@@ -20,4 +20,5 @@ from helpers.files import (
 #    a. plotly graphs
 #    b. txt file with data aggregated
 # 5. zip the username folder under the user_files directory
-# 6. email the user the zip file!
+# 6. email the user the zip file
+# 7. schedule when it should run
