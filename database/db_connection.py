@@ -19,5 +19,3 @@ class DatabaseConnection:
         else:
             self.connection.commit()
             self.connection.close()
-
-        
