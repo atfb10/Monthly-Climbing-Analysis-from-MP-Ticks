@@ -23,7 +23,7 @@ def create_user_table() -> None:
         )
     return
 
-def insert_user(user: MpUser) -> None:
+def insert(user: MpUser) -> None:
     '''
     arguments: user object
     returns: none
