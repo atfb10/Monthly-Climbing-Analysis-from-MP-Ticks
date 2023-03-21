@@ -55,7 +55,7 @@ def list_users() -> None:
         print(f'User {all_users[user][1]} -> {all_users[user][0]}')
     return
 
-def delete(username) -> None:
+def delete(username: str) -> None:
     '''
     arguments: none
     returns: none
