@@ -42,7 +42,7 @@ def get_users() -> List[MpUser]:
     '''
     with DatabaseConnection(HOST) as connection:
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM USERS')    
+        cursor.execute('SELECT username, userid, email FROM USERS')    
         all_users = cursor.fetchall() 
     return all_users
 

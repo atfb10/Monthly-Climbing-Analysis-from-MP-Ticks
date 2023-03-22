@@ -1,23 +1,22 @@
-from concurrent.futures import ThreadPoolExecutor
-import time
+'''
+author: Adam Forestier
+date: March 22, 2023
+description: app.py manages function calls and object creation to run the project
+'''
+from database.mp_db import get_users
+from helpers.files import get_user_ticks
+from users.user import MpUser
 
-from helpers.files import (
-    get_user_ticks
-)
+users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
 
-# Utilizing threading 
-# with ThreadPoolExecutor(max_workers=2) as pool:
-#     t = time.time()
-#     pool.submit(get_user_ticks(test_user))
-#     pool.submit(get_user_ticks(test_user1))
-#     print(f'time to get ticks with theading = {time.time() - t}')
+for user in users:
+    get_user_ticks(user)
 
 # TODO: REMAINING STEPS
-# 1. Get all users from the database
-# 2. call get_user_ticks
-# 3. data
-#    a. plotly graphs
+# 1. data
+#    a. plotly graphs (generate all graphs using per user @ "once" using threading [not really parallel, but you know what you mean]) 
 #    b. txt file with data aggregated
-# 4. zip the username folder under the user_files directory
-# 5. email the user the zip file
-# 6. schedule when it should run
+# 2. zip the username folder under the user_files directory
+# 3. email the user the zip file
+# 4. schedule when it should run
+# 5. Logging to txt file

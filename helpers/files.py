@@ -6,6 +6,7 @@ Description: files contains various functions regarding files
 import os
 import pandas as pd
 
+from my_credentials import PATH_TO_PROJECT
 from users.user import MpUser
 
 def get_user_ticks(user: MpUser) -> None:
@@ -25,8 +26,11 @@ def move_user_csv(user: MpUser) -> None:
     returns: None
     description: move_user_csv() moves the csv files in the parent directory into a users subfolder under the user_files directory
     '''
-    new_path = f'files/{user.username}/{user.csv_filename}'
-    os.rename(user.csv_filename, new_path)
+    old_path = f'{PATH_TO_PROJECT}\\{user.csv_filename}'
+    new_path = f'{PATH_TO_PROJECT}\\user_files\\{user.username}\\{user.csv_filename}'
+    if os.path.isfile(new_path):
+        os.remove(new_path)
+    os.rename(old_path, new_path)
     return
 
 def make_user_files_folder(user: MpUser):
