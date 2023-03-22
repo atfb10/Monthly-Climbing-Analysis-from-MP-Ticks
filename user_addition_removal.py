@@ -23,6 +23,7 @@ def menu(menu_options=USER_OPTIONS) -> None:
     description: menu gives an admin a menu to control the addition, listing and deletion of users in the terminal
     '''
     admin_selection = input(menu_options)
+    admin_selection.lower
     while admin_selection != 'q':
         if admin_selection == 'a':
             username = input('Enter username: ')
@@ -34,11 +35,12 @@ def menu(menu_options=USER_OPTIONS) -> None:
         elif admin_selection == 'l':
             mp_db.list_users()
         elif admin_selection == 'd':
-            user_to_delete = input('Enter username of user to delete: ')
-            mp_db.delete(user_to_delete)
+            username = input('Enter username of user to delete: ').strip()
+            mp_db.delete_user(username)
         else:
             print('Invalid operation. Select again')
         admin_selection = input(menu_options)
+        admin_selection.lower
     return
 
 mp_db.create_user_table()

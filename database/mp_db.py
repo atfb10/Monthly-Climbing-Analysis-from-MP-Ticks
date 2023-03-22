@@ -60,7 +60,7 @@ def list_users() -> None:
         print(f'User {user[0]} -> {user[1]}')
     return
 
-def delete(username: str) -> None:
+def delete_user(username: str) -> None:
     '''
     arguments: none
     returns: none
@@ -68,4 +68,15 @@ def delete(username: str) -> None:
     '''
     with DatabaseConnection(HOST) as connection:
         cursor = connection.cursor()
-        cursor.execute('DELETE FROM USERS WHERE username=?', (username,))
+        cursor.execute("DELETE FROM USERS WHERE userid=?", (username,))
+    return
+
+def delete_all_users() -> None:
+    '''
+    aerguments: None
+    returns: None
+    description: delete_all_users() deletes all users from the USERS table
+    '''
+    with DatabaseConnection(HOST) as connection:
+        cursor = connection.cursor()
+        cursor.execute('DELETE FROM USERS',)

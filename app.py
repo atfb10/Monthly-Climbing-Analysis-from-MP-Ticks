@@ -13,12 +13,11 @@ from helpers.files import (
 #     print(f'time to get ticks with theading = {time.time() - t}')
 
 # TODO: REMAINING STEPS
-# 1. Create users for the database
-# 2. Get all users from the database
-# 3. call get_user_ticks
-# 4. data
+# 1. Get all users from the database
+# 2. call get_user_ticks
+# 3. data
 #    a. plotly graphs
 #    b. txt file with data aggregated
-# 5. zip the username folder under the user_files directory
-# 6. email the user the zip file
-# 7. schedule when it should run
+# 4. zip the username folder under the user_files directory
+# 5. email the user the zip file
+# 6. schedule when it should run

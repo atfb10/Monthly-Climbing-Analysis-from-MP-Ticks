@@ -36,7 +36,7 @@ def make_user_files_folder(user: MpUser):
     description: make_user_files_folder creates a folder under the user_files directory for each user that will store their data files
     '''
     user_folder = str(user.username)
-    parent_dir = "/user_files/"
+    parent_dir = "user_files/"
     path = os.path.join(parent_dir, user_folder)
     os.mkdir(path)
     return
