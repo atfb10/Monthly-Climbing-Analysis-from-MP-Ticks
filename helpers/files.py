@@ -19,9 +19,11 @@ def get_user_ticks(user: MpUser) -> List[pd.DataFrame]:
                  additionally, it cleans the sets the data field to a pd.datetime field and returns the cleansed dataframe
     '''
     df = pd.read_csv(user.user_tick_export_url)
+    df = clean_data(df)
+    
     df.to_csv(user.csv_filename, index=False)
     move_user_csv(user)
-    return clean_data(df)
+    return df
 
 def move_user_csv(user: MpUser) -> None:
     '''

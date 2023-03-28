@@ -15,7 +15,21 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     ''' 
     df = df.drop('Rating Code', axis=1)
     df = df.rename(columns={'Your Rating': 'Your Grade'})
-    df['Your Grade'] = df['Your Grade'].fillna('Not assigned')
+    df['Your Grade'] = df['Your Grade'].fillna('Not Assigned')
     df['Notes'] = df['Notes'].fillna('No Notes')
     df['Date'] = pd.to_datetime(df['Date'])
+    df['Lead Style'] = df['Lead Style'].fillna('Not Led')
+    df['Style'] = df['Style'].fillna('Not Specified')
+    single_p_mean = round(df[df['Pitches'] == 1]['Length'].mean())
+    df['Length'] = df['Length'].fillna(single_p_mean)
     return df
+
+# def extract_crag(df: pd.DataFrame) -> pd.DataFrame:
+
+
+#     return crag
+
+# def extract_state(df: pd.DataFrame) -> pd.DataFrame:
+#     split_locations = df
+
+#     return state

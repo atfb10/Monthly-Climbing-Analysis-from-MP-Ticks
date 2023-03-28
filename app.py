@@ -15,11 +15,9 @@ for user in users:
     dataframes.append(get_user_ticks(user))
 
 
-print(dataframes[0].head(15))
-
 # TODO: REMAINING STEPS
 # 1. data
-#    a. clean data
+#    a. add columns
 #    b. plotly graphs (generate all graphs using per user @ "once" using threading [not really parallel, but you know what you mean]) 
 #    c. txt file with data aggregated
 # 2. zip the username folder under the user_files directory
