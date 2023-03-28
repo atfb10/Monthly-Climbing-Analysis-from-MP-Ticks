@@ -22,8 +22,8 @@ dataframes = []
 
 # TODO: REMAINING STEPS
 # 1. data
-#    a. filter out to only previous 30 days
+#    a. NOTE (1): filter out to only previous 30 days
 #    b. plotly graphs (generate all graphs using per user @ "once" using threading [not really parallel, but you know what you mean]) 
-#    c. txt file with data aggregated
-# 2. schedule when it should run
+#    c. NOTE (2): txt file with data aggregated
+# 2. NOTE (3): schedule when it should run
 # 3. Logging to txt file
