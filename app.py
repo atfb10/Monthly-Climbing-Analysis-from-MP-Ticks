@@ -1,18 +1,26 @@
 '''
 author: Adam Forestier
-date: March 22, 2023
+date: March 28, 2023
 description: app.py manages function calls and object creation to run the project
 '''
 
 from database.mp_db import get_users
-from helpers.files import get_user_ticks
+from helpers.files import (
+    get_user_ticks,
+    zip_user_folder
+    )
 from users.user import MpUser
 
+# Get users from database
 users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
 dataframes = []
 
-for user in users:
-    dataframes.append(get_user_ticks(user))
+# create dataframes for each user
+[dataframes.append(get_user_ticks(user)) for user in users]
+
+
+# put users files in zip folder
+[zip_user_folder(user) for user in users]
 
 
 # TODO: REMAINING STEPS
