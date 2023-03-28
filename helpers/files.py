@@ -65,5 +65,5 @@ def zip_user_folder(user: MpUser):
     parent_dir = 'user_files/'
     user_folder = str(user.username)
     path = os.path.join(parent_dir, user_folder)
-    sh.make_archive(f'{path}-zipped', 'zip', path)
+    sh.make_archive(f'{path}', 'zip', path)
     return
