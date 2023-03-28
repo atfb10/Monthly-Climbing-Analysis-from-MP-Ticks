@@ -5,6 +5,7 @@ Description: data.py contains functions to cleanse and aggregate user data
 '''
 
 # TODO: Turn this into a data class with a dataframe as a parameter and all functions as a method
+import numpy as np
 import pandas as pd
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
@@ -24,12 +25,26 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df['Length'] = df['Length'].fillna(single_p_mean)
     return df
 
-# def extract_crag(df: pd.DataFrame) -> pd.DataFrame:
+def extract_crag(location: str) -> str:
+    '''
+    
+    '''
+    split_locations = location.split(' > ')
+    return split_locations[len(split_locations) - 1]
 
+def extract_state(location: str) -> str:
+    '''
+    
+    '''
+    split_locations = location.split(' > ')
+    return split_locations[0]
 
-#     return crag
-
-# def extract_state(df: pd.DataFrame) -> pd.DataFrame:
-#     split_locations = df
-
-#     return state
+def add_cols(df: pd.DataFrame) -> pd.DataFrame:
+    '''
+    arguments: dataframe of user data
+    returns: dataframe of user data with columns added
+    description: add_cols() creates new columns for the dataframe to be analyzed
+    '''
+    df['Route Crag'] = np.vectorize(extract_crag)(df['Location'])
+    df['Route State'] = np.vectorize(extract_state)(df['Location'])
+    return df

@@ -7,7 +7,10 @@ import os
 import pandas as pd
 from typing import List
 
-from data.data import clean_data
+from data.data import (
+    add_cols,
+    clean_data,
+    )
 from my_credentials import PATH_TO_PROJECT
 from users.user import MpUser
 
@@ -20,7 +23,7 @@ def get_user_ticks(user: MpUser) -> List[pd.DataFrame]:
     '''
     df = pd.read_csv(user.user_tick_export_url)
     df = clean_data(df)
-    
+    df = add_cols(df)
     df.to_csv(user.csv_filename, index=False)
     move_user_csv(user)
     return df
