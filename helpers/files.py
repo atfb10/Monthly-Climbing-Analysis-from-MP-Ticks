@@ -1,18 +1,21 @@
 '''
 Author: Adam Forestier
-Date: March 22, 2023
+Date: March 28, 2023
 Description: files contains various functions regarding files
 '''
 import os
 import pandas as pd
+import shutil as sh
 from typing import List
 
 from data.data import (
     add_cols,
-    clean_data,
+    clean_data
     )
 from my_credentials import PATH_TO_PROJECT
 from users.user import MpUser
+
+# For testing only
 
 def get_user_ticks(user: MpUser) -> List[pd.DataFrame]:
     '''
@@ -47,8 +50,20 @@ def make_user_files_folder(user: MpUser):
     returns: none
     description: make_user_files_folder creates a folder under the user_files directory for each user that will store their data files
     '''
-    user_folder = str(user.username)
     parent_dir = "user_files/"
+    user_folder = str(user.username)
     path = os.path.join(parent_dir, user_folder)
     os.mkdir(path)
+    return
+
+def zip_user_folder(user: MpUser):
+    '''
+    arguments: an MpUser object
+    returns: None
+    description: zip_user_folder creates a zip folder that contains a users graph and data files
+    '''
+    parent_dir = 'user_files/'
+    user_folder = str(user.username)
+    path = os.path.join(parent_dir, user_folder)
+    sh.make_archive(f'{path}', 'zip', path)
     return
