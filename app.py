@@ -19,7 +19,6 @@ dataframes = []
 [zip_user_folder(user) for user in users]
 [send_mail(user) for user in users]
 
-
 # TODO: REMAINING STEPS
 # 1. data
 #    a. NOTE (1): filter out to only previous 30 days
@@ -27,3 +26,15 @@ dataframes = []
 #    c. NOTE (2): txt file with data aggregated
 # 2. NOTE (3): schedule when it should run
 # 3. Logging to txt file
+
+
+'''
+Graph Ideas
+- Sends vs Fell/Hung
+- Count of days climbing outside vs not
+- Pitches by day
+- crags visited
+- States climbed in
+- Total feet climbed
+- Feet climbed by day
+'''
