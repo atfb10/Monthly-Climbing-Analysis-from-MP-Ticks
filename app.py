@@ -14,6 +14,14 @@ from helpers.files import (
     )
 from users.user import MpUser
 
+# Testing only
+users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
+dataframes = []
+[dataframes.append(get_user_ticks(user)) for user in users]
+[zip_user_folder(user) for user in users]
+[send_mail(user) for user in users]
+
+# Scheduling
 def job() -> None:
     '''
     arguments: 
@@ -27,21 +35,21 @@ def job() -> None:
     [dataframes.append(get_user_ticks(user)) for user in users]
     [zip_user_folder(user) for user in users]
     [send_mail(user) for user in users]
+    return
 
+# Job will run every day at 6am. It will do nothing except on the first of the month
 schedule.every().day.at('06:00').do(job)
-
 while True:
     schedule.run_pending()
 
-
-# TODO: REMAINING STEPS
-# 1. data
-#    a. NOTE (1): filter out to only previous 30 days
-#    b. plotly graphs (generate all graphs using per user @ "once" using threading [not really parallel, but you know what you mean]) 
-#    c. NOTE (2): txt file with data aggregated
-# 2. NOTE (3): schedule when it should run
-# 3. Logging to txt file
-
+'''
+TODO: REMAINING STEPS
+1. data
+    a. NOTE (1): filter out to only previous 30 days
+    b. plotly graphs (generate all graphs using per user @ "once" using threading [not really parallel, but you know what you mean]) 
+    c. NOTE (2): txt file with data aggregated
+ 2. Logging to txt file
+'''
 
 '''
 Graph Ideas
