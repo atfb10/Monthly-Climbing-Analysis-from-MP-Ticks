@@ -2,7 +2,7 @@
 '''
 author: Adam Forestier
 date: March 28, 2023
-description: email.py manages function calls for sending emails
+description: email.py contains function(s) for sending emails
 '''
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
