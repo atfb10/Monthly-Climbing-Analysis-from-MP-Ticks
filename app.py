@@ -64,7 +64,10 @@ Text Data Ideas (.txt -> .html) Iteration 1 = data in a text file. Iteration 2 =
 
 '''
 how I want to do HTML file.
-1. Create dataframe with all the text data
+1. Create dataframe with all the text data: do this by 
+    a) extracting the values from the dataframe. 
+    b) creating a dictionary object with each key as what the category and each value as the value for that category (example 'num_feet_climbed': length_variable) 
+    c. Pass that dictionary into a dataframe object
 2. Write the dataframe as a .html (iteration 2 = done)
 3. Write the table to a pre-styled html file, and then save that html file for each user
 '''
