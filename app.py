@@ -60,6 +60,7 @@ Text Data Ideas (.txt -> .html) Iteration 1 = data in a text file. Iteration 2 =
 - crag with most days climbing at
 - Longest route (by vertical feet)
 - Biggest day of climbing (by vertical feet)
+- likelihood (percentage) of onsighting/flashing a route of a specific grade
 '''
 
 '''
