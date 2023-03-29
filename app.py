@@ -30,11 +30,41 @@ dataframes = []
 
 '''
 Graph Ideas
-- Sends vs Fell/Hung
+- Lead Style graphed (onsight, flash, redpoint, fell/hung)
+- Boulder style graphed (flash, send, attempt)
 - Count of days climbing outside vs not
 - Pitches by day
 - crags visited
 - States climbed in
 - Total feet climbed
 - Feet climbed by day
+- Word cloud taken from notes
+- Histogram w/ Kernal Density Estimation plot by climbing grades. NOTE: Go to saved url under "coding" folder titled sort column in pandas by specific order for how to do this. Function that creates a dataframe that is sorted by route grade 
+- Histogram w/ Kernal Density Estimation plot by bouldering grades. NOTE: Go to saved url under "coding" folder titled sort column in pandas by specific order for how to do this. Function that creates a dataframe that is sorted by bouldering grade
+'''
+
+'''
+Text Data Ideas (.txt -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file
+- Number of feet climbed
+- Hardest pitch sent
+- Hardest pitch attempted
+- Route climbed the most
+- Boulder climbed the most
+- Hardest boulder sent
+- Hardest boulder climbed
+- List of routes given four stars (your favorites of the month)
+- List of routes given 1 star or a bomb (your least favorite climbs of the month)
+- state where most pitches were climbed
+- state with most days climbing at
+- crag where most pitches were climbed
+- crag with most days climbing at
+- Longest route (by vertical feet)
+- Biggest day of climbing (by vertical feet)
+'''
+
+'''
+how I want to do HTML file.
+1. Create dataframe with all the text data
+2. Write the dataframe as a .html (iteration 2 = done)
+3. Write the table to a pre-styled html file, and then save that html file for each user
 '''
