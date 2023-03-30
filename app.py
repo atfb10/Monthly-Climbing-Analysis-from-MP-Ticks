@@ -62,12 +62,15 @@ Graph Ideas
 - Total feet climbed
 - Feet climbed by day
 - Word cloud taken from notes
-- Histogram w/ Kernal Density Estimation plot by climbing grades. NOTE: Go to saved url under "coding" folder titled sort column in pandas by specific order for how to do this. Function that creates a dataframe that is sorted by route grade 
-- Histogram w/ Kernal Density Estimation plot by bouldering grades. NOTE: Go to saved url under "coding" folder titled sort column in pandas by specific order for how to do this. Function that creates a dataframe that is sorted by bouldering grade
+- Histogram w/ Kernal Density Estimation plot by climbing grades. 
+- Histogram w/ Kernal Density Estimation plot by bouldering grades. 
+    NOTE: For two above Option 1: pass in order argument. order takes in a list of column names and displays those along the x-axis in the order. Step 1: Create a list object with order of ascending grades. Step 2: set order = to the list object
+    NOTE: For two above Option 2: Go to saved url under "coding" folder titled sort column in pandas by specific order for how to do this. Function that creates a dataframe that is sorted by bouldering grade
 '''
 
 '''
-Text Data Ideas (.txt -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file
+Text Data Ideas (.txt -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file.
+NOTE: Utilize groupby method extensively!
 - Number of feet climbed
 - Hardest pitch sent
 - Hardest pitch attempted
