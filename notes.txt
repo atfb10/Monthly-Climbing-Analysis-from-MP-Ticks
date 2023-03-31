@@ -1,8 +1,7 @@
 '''
 TODO: REMAINING STEPS
-1. data
-    a. NOTE (1): filter out to only previous 30 days
-    b. NOTE (2): txt file with data aggregated
+ 0. TODO: !!!! Add error handling for if data received is none for methods of the graph and stats classes
+ 1. data - filter out to only previous 30 days and craete a separte csv for this file
  2. Logging to txt file
 
  TODO: FUTURE STEPS

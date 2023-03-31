@@ -257,6 +257,68 @@ ROCK_CLIMBING_GRADES_TO_NUMERIC = {
     '5.15d': 68
 }
 
+BOULDERING_GRADES = [
+    'V-Easy', 
+    'V1',
+    'V1+',
+    'V2',
+    'V2+',
+    'V3', 
+    'V3+',
+    'V4',
+    'V4+',
+    'V5',
+    'V5+', 
+    'V6',
+    'V6+',
+    'V7',
+    'V7+',
+    'V8', 
+    'V8+',
+    'V9',
+    'V9+',
+    'V10',
+    'V10+',
+    'V11',
+    'V12',
+    'V13', 
+    'V14',
+    'V15',
+    'V16',
+    'V17',
+]
+
+BOULDERING_GRADES_TO_NUMERIC = {
+    'V-Easy':0, 
+    'V1':1,
+    'V1+':2,
+    'V2':3,
+    'V2+':4,
+    'V3':5, 
+    'V3+':6,
+    'V4':7,
+    'V4+':8,
+    'V5':9,
+    'V5+':10, 
+    'V6':11,
+    'V6+':12,
+    'V7':13,
+    'V7+':14,
+    'V8':15, 
+    'V8+':16,
+    'V9':17,
+    'V9+':18,
+    'V10':19,
+    'V10+':20,
+    'V11':21,
+    'V12':22,
+    'V13':23, 
+    'V14':24,
+    'V15':25,
+    'V16':26,
+    'V17':27,
+}
+
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     '''
     arguments: uncleansed dataframe of mountain project user ticks
