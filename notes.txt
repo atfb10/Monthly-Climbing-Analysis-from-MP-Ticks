@@ -11,10 +11,8 @@ TODO: REMAINING STEPS
 Graph Ideas
 - 1a Pitches by day
 - 1b Feet by day
-- 2a Pitches by crag 
-- 2b Feet by crag 
-- 3b Pitches and 
-- 3b Feet by State
+- Boulder Count by Grade 
+- Route Count by Grade 
 - 4 Word cloud taken from notes
 - Histogram w/ Kernal Density Estimation plot by climbing grades. 
 - Histogram w/ Kernal Density Estimation plot by bouldering grades. 
@@ -33,13 +31,14 @@ NOTE: Utilize groupby method extensively!
 - Hardest pitch attempted
 - Route climbed the most
 - Boulder climbed the most
+- Average stars of routes you have climbed by MP avg stars
 - Hardest boulder sent
 - Hardest boulder climbed
+- Highest rated MP climb of the month 
+- Lowest rated MP climb of the month
 - List of routes given four stars (your favorites of the month)
 - List of routes given 1 star or a bomb (your least favorite climbs of the month)
-- state where most pitches were climbed
 - state with most days climbing at
-- crag where most pitches were climbed
 - crag with most days climbing at
 - Longest route (by vertical feet)
 - Biggest day of climbing (by vertical feet)

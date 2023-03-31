@@ -34,6 +34,9 @@ class PlotlyGraph:
         self.__lead_style_count_graphed()
         self.__boulder_style_count_graphed()
         self.__pitches_by_state()
+        self.__pitches_by_crag()
+        self.__feet_by_crag()
+        self.__feet_by_state()
         return
     
     def __move_graph_to_user_folder(self, filename) -> None:
@@ -132,6 +135,54 @@ class PlotlyGraph:
         df.columns = ['State', 'Pitch Count']
         fig = px.histogram(df, x='State', y='Pitch Count', color='State', title='Pitches by State', text_auto=True)
         filename =  'Pitches by State.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __pitches_by_crag(self):
+        '''
+        arguments: self
+        returns: none
+        description: __pitches_by_state graphs the total number of pitches by state
+        '''
+        df = self.user.df
+        df = df.groupby('Route Crag').sum()['Pitches']
+        df = df.reset_index()
+        df.columns = ['Crag', 'Pitch Count']
+        fig = px.histogram(df, x='Crag', y='Pitch Count', color='Crag', title='Pitches by Crag', text_auto=True)
+        filename =  'Pitches by Crag.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __feet_by_state(self):
+        '''
+        arguments: self
+        returns: none
+        description: __pitches_by_state graphs the total number of pitches by state
+        '''
+        df = self.user.df
+        df = df.groupby('Route State').sum()['Length']
+        df = df.reset_index()
+        df.columns = ['State', 'Feet Climbed']
+        fig = px.histogram(df, x='State', y='Feet Climbed', color='State', title='Feet Climbed by State')
+        filename =  'Feet by State.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __feet_by_crag(self):
+        '''
+        arguments: self
+        returns: none
+        description: __pitches_by_state graphs the total number of pitches by state
+        '''
+        df = self.user.df
+        df = df.groupby('Route Crag').sum()['Length']
+        df = df.reset_index()
+        df.columns = ['Crag', 'Feet Climbed']
+        fig = px.histogram(df, x='Crag', y='Feet Climbed', color='Crag', title='Feet Climbed by Crag')
+        filename =  'Feet by Crag.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
         return
