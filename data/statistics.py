@@ -11,9 +11,8 @@ from users.user import MpUser
 class PlotlyGraphMpUserStatistics:
     '''
     objects of the PlotlyGraph class contains: 
-    parameters: a user and the dataframe associated with their data
+    parameters: a user object
     methods: performs building of statistical table files for user dataframe. Moves files to user's filepath 
     '''
-    def __init__(self, df: pd.DataFrame, user: MpUser):
-        self.df = df
+    def __init__(self, user: MpUser):
         self.user = user
