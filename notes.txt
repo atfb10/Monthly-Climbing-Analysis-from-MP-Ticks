@@ -60,5 +60,5 @@ how I want to do HTML file.
 Future TODO:
     - Move all data cleansing and file moving functions into the User class
     - HTML Statistics table styling
-
+    - Update plotly html files to be Dash dashboards
 '''
