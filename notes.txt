@@ -9,10 +9,9 @@ TODO: REMAINING STEPS
 
 '''
 Graph Ideas
-- 1a Pitches by day
-- 1b Feet by day
-- Boulder Count by Grade 
-- Route Count by Grade 
+- 1 
+- 2a Boulder Count by Grade 
+- 3a Route Count by Grade 
 - 4 Word cloud taken from notes
 - Histogram w/ Kernal Density Estimation plot by climbing grades. 
 - Histogram w/ Kernal Density Estimation plot by bouldering grades. 

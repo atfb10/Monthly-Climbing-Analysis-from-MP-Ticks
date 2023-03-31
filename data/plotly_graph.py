@@ -3,7 +3,7 @@ Author: Adam Forestier
 Date: March 31, 2023
 Description: plotly_graph.py contains the PlotlyGraph class
 '''
-
+import json
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -12,6 +12,10 @@ import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import os
 
+from data.data import (
+    US_STATE_TO_ABBREVIATION,
+    US_STATE_LIST
+)
 from my_credentials import PATH_TO_PROJECT
 from users.user import MpUser
 
@@ -33,10 +37,10 @@ class PlotlyGraph:
         self.__distrubtion_of_quality_routes()
         self.__lead_style_count_graphed()
         self.__boulder_style_count_graphed()
-        self.__pitches_by_state()
+        self.__map_pitches_by_state()
         self.__pitches_by_crag()
         self.__feet_by_crag()
-        self.__feet_by_state()
+        self.__map_feet_by_state()
         self.__feet_by_date()
         self.__pitches_by_date()
         return
@@ -52,26 +56,6 @@ class PlotlyGraph:
         if os.path.isfile(new_path):
             os.remove(new_path)
         os.rename(old_path, new_path)
-        return
-    
-    def __distrubtion_of_quality_routes(self) -> None:
-        '''
-        arguments: self
-        returns: None
-        description: avg_stars_vs_user_stars() creates a scatterplot showing this relationship
-        '''
-        df = self.user.df
-        data = [df['Avg Stars'], df['Your Stars']]
-        labels = ['Mountain Project Stars', 'Your Stars']
-        fig = ff.create_distplot(data, labels, bin_size=.5, show_hist=False, show_rug=False,)
-        fig.update_layout(
-            title_text='Distribution of Quality of Routes Climbed',
-            xaxis_title='Stars',
-            yaxis_title='Density'
-            )
-        filename = 'Distribution of Route Quality.html'
-        pyo.plot(fig, filename=filename)
-        self.__move_graph_to_user_folder(filename)
         return
     
     def __change_to_tr_if_no_lead(self, style: str) -> str:
@@ -125,21 +109,75 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __pitches_by_state(self):
+    def __distrubtion_of_quality_routes(self) -> None:
         '''
         arguments: self
-        returns: none
-        description: __pitches_by_state graphs the total number of pitches by state
+        returns: None
+        description: avg_stars_vs_user_stars() creates a scatterplot showing this relationship
         '''
         df = self.user.df
-        df = df.groupby('Route State').sum()['Pitches']
-        df = df.reset_index()
-        df.columns = ['State', 'Pitch Count']
-        fig = px.histogram(df, x='State', y='Pitch Count', color='State', title='Pitches by State', text_auto=True)
-        filename =  'Pitches by State.html'
+        data = [df['Avg Stars'], df['Your Stars']]
+        labels = ['Mountain Project Stars', 'Your Stars']
+        fig = ff.create_distplot(data, labels, bin_size=.5, show_hist=False, show_rug=False,)
+        fig.update_layout(
+            title_text='Distribution of Quality of Routes Climbed',
+            xaxis_title='Stars',
+            yaxis_title='Density'
+            )
+        filename = 'Distribution of Route Quality.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
         return
+    
+    def __map_pitches_by_state(self):
+        with open('D:\\coding\\projects\\mp-user-tick-analysis\\us-states.json') as response:
+            states = json.load(response)
+        df = self.user.df
+        df = df.groupby('Route State').sum()['Pitches']
+        df = df.reset_index()
+        df.columns = ['State', 'Pitches']
+        df = df[df['State'].isin(US_STATE_LIST)]
+        df['State'] = df['State'].map(US_STATE_TO_ABBREVIATION)
+        max_pitches = df['Pitches'].max()
+        fig = px.choropleth(df, geojson=states, locations='State', color='Pitches', color_continuous_scale='Viridis', range_color=(0, max_pitches), scope='usa', title='Pitches Climbed by State')
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+        filename =  'Climbing Map Pitches.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __map_feet_by_state(self):
+        with open('D:\\coding\\projects\\mp-user-tick-analysis\\us-states.json') as response:
+            states = json.load(response)
+        df = self.user.df
+        df = df.groupby('Route State').sum()['Length']
+        df = df.reset_index()
+        df.columns = ['State', 'Feet Climbed']
+        df = df[df['State'].isin(US_STATE_LIST)]
+        df['State'] = df['State'].map(US_STATE_TO_ABBREVIATION)
+        max_pitches = df['Feet Climbed'].max()
+        fig = px.choropleth(df, geojson=states, locations='State', color='Feet Climbed', color_continuous_scale='Turbo', range_color=(0, max_pitches), scope='usa', title='Feet Climbed by State')
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+        filename =  'Climbing Map Feet.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    # def __pitches_by_state(self):
+    #     '''
+    #     arguments: self
+    #     returns: none
+    #     description: __pitches_by_state graphs the total number of pitches by state
+    #     '''
+    #     df = self.user.df
+    #     df = df.groupby('Route State').sum()['Pitches']
+    #     df = df.reset_index()
+    #     df.columns = ['State', 'Pitch Count']
+    #     fig = px.histogram(df, x='State', y='Pitch Count', color='State', title='Pitches by State', text_auto=True)
+    #     filename =  'Pitches by State.html'
+    #     pyo.plot(fig, filename=filename)
+    #     self.__move_graph_to_user_folder(filename)
+    #     return
     
     def __pitches_by_crag(self):
         '''
@@ -157,21 +195,21 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __feet_by_state(self):
-        '''
-        arguments: self
-        returns: none
-        description: __pitches_by_state graphs the total number of pitches by state
-        '''
-        df = self.user.df
-        df = df.groupby('Route State').sum()['Length']
-        df = df.reset_index()
-        df.columns = ['State', 'Feet Climbed']
-        fig = px.histogram(df, x='State', y='Feet Climbed', color='State', title='Feet Climbed by State')
-        filename =  'Feet by State.html'
-        pyo.plot(fig, filename=filename)
-        self.__move_graph_to_user_folder(filename)
-        return
+    # def __feet_by_state(self):
+    #     '''
+    #     arguments: self
+    #     returns: none
+    #     description: __pitches_by_state graphs the total number of pitches by state
+    #     '''
+    #     df = self.user.df
+    #     df = df.groupby('Route State').sum()['Length']
+    #     df = df.reset_index()
+    #     df.columns = ['State', 'Feet Climbed']
+    #     fig = px.histogram(df, x='State', y='Feet Climbed', color='State', title='Feet Climbed by State')
+    #     filename =  'Feet by State.html'
+    #     pyo.plot(fig, filename=filename)
+    #     self.__move_graph_to_user_folder(filename)
+    #     return
     
     def __feet_by_crag(self):
         '''
