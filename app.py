@@ -87,6 +87,7 @@ NOTE: Utilize groupby method extensively!
 - Longest route (by vertical feet)
 - Biggest day of climbing (by vertical feet)
 - likelihood (percentage) of onsighting/flashing a route of a specific grade
+- Challenging: correlation table of route grades send by length, number of pitches, etc
 '''
 
 '''
