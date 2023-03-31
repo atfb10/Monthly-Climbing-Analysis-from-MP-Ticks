@@ -35,15 +35,15 @@ class PlotlyGraph:
         returns: none
         description: graph() calls the graphing methods of self
         '''
-        # self.__distrubtion_of_quality_routes()
-        # self.__lead_style_count_graphed()
-        # self.__boulder_style_count_graphed()
-        # self.__map_pitches_by_state()
-        # self.__pitches_by_crag()
-        # self.__feet_by_crag()
-        # self.__map_feet_by_state()
-        # self.__feet_by_date()
-        # self.__pitches_by_date()
+        self.__distrubtion_of_quality_routes()
+        self.__lead_style_count_graphed()
+        self.__boulder_style_count_graphed()
+        self.__map_pitches_by_state()
+        self.__pitches_by_crag()
+        self.__feet_by_crag()
+        self.__map_feet_by_state()
+        self.__feet_by_date()
+        self.__pitches_by_date()
         self.__routes_by_style()
         self.__rock_routes_by_grade()
         return

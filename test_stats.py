@@ -10,5 +10,12 @@ from helpers.files import (
     get_user_ticks,
     zip_user_folder
     )
-from data.plotly_graph import PlotlyGraph
+from data.statistics import MpUserStatistics
 from users.user import MpUser
+
+users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
+[get_user_ticks(user) for user in users]
+# here I need to do the stats and graph calls
+adam = users[0]
+adam_stats = MpUserStatistics(adam)
+adam_stats.stats()

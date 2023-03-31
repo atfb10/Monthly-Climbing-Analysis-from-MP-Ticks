@@ -19,6 +19,8 @@ class MpUser:
         self.user_tick_url = f'{self.BASE_URL}{userid}/{username}{self.TICK}'
         self.user_tick_export_url = f'{self.BASE_URL}{userid}/{username}{self.TICK_EXPORT}'
         self.csv_filename = f'{username}-ticks.csv'
+        self.txt_filename = f'{username}-stats.txt'
+        self.txt_montly_filename = f'{username}-monthly-stats.txt'
         self.csv_montly_filename = f'{username}-monthly-ticks.csv'
         self.df = None
 
