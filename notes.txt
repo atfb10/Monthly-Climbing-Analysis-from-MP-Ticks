@@ -4,6 +4,7 @@ TODO: REMAINING STEPS
     a. NOTE (1): filter out to only previous 30 days
     b. NOTE (2): txt file with data aggregated
  2. Logging to txt file
+ 3. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come out
 '''
 
 '''

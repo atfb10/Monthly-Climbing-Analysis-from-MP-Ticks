@@ -133,6 +133,11 @@ class PlotlyGraph:
         return
     
     def __map_pitches_by_state(self) -> None:
+        '''
+        arguments: self
+        returns: none
+        description: __map_pitches_by_state displays a heat map on a US map by number of pitches done in each state
+        '''
         with open('D:\\coding\\projects\\mp-user-tick-analysis\\us-states.json') as response:
             states = json.load(response)
         df = self.user.df
@@ -150,6 +155,11 @@ class PlotlyGraph:
         return
     
     def __map_feet_by_state(self) -> None:
+        '''
+        arguments: self
+        returns: none
+        description: __map_feet_by_state displays a heat map on a US map by number of feet climbed in each state
+        '''
         with open('D:\\coding\\projects\\mp-user-tick-analysis\\us-states.json') as response:
             states = json.load(response)
         df = self.user.df
@@ -170,7 +180,7 @@ class PlotlyGraph:
         '''
         arguments: self
         returns: none
-        description: __pitches_by_state graphs the total number of pitches by state
+        description: __pitches_by_crag graphs the total number of pitches by crag
         '''
         df = self.user.df
         df = df.groupby('Route Crag').sum()['Pitches']
@@ -186,7 +196,7 @@ class PlotlyGraph:
         '''
         arguments: self
         returns: none
-        description: __pitches_by_state graphs the total number of pitches by state
+        description: __feet_by_crag graphs the total number of feet climbed by crag
         '''
         df = self.user.df
         df = df.groupby('Route Crag').sum()['Length']
@@ -202,7 +212,7 @@ class PlotlyGraph:
         '''
         arguments: self
         returns: none
-        description: __pitches_by_state graphs the total number of pitches by state
+        description: __pitches_by_date graphs the total number of pitches by date
         '''
         df = self.user.df
         df = df.groupby('Date').sum()['Pitches']
@@ -218,7 +228,7 @@ class PlotlyGraph:
         '''
         arguments: self
         returns: none
-        description: __pitches_by_state graphs the total number of pitches by state
+        description: __pitches_by_state graphs the total number of feet climbed by date
         '''
         df = self.user.df
         df = df.groupby('Date').sum()['Length']
