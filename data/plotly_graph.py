@@ -37,6 +37,8 @@ class PlotlyGraph:
         self.__pitches_by_crag()
         self.__feet_by_crag()
         self.__feet_by_state()
+        self.__feet_by_date()
+        self.__pitches_by_date()
         return
     
     def __move_graph_to_user_folder(self, filename) -> None:
@@ -183,6 +185,38 @@ class PlotlyGraph:
         df.columns = ['Crag', 'Feet Climbed']
         fig = px.histogram(df, x='Crag', y='Feet Climbed', color='Crag', title='Feet Climbed by Crag')
         filename =  'Feet by Crag.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __pitches_by_date(self):
+        '''
+        arguments: self
+        returns: none
+        description: __pitches_by_state graphs the total number of pitches by state
+        '''
+        df = self.user.df
+        df = df.groupby('Date').sum()['Pitches']
+        df = df.reset_index()
+        df.columns = ['Date', 'Pitch Count']
+        fig = px.histogram(df, x='Date', y='Pitch Count', title='Pitches by Date', text_auto=True)
+        filename =  'Pitches by Date.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __feet_by_date(self):
+        '''
+        arguments: self
+        returns: none
+        description: __pitches_by_state graphs the total number of pitches by state
+        '''
+        df = self.user.df
+        df = df.groupby('Date').sum()['Length']
+        df = df.reset_index()
+        df.columns = ['Date', 'Feet Climbed']
+        fig = px.histogram(df, x='Date', y='Feet Climbed', title='Feet Climbed by Date')
+        filename =  'Feet by Date.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
         return
