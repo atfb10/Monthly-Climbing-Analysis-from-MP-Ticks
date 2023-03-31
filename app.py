@@ -24,8 +24,10 @@ def job() -> None:
     if date.today().day != 1:
         return
     users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
-    [user.df(get_user_ticks(user)) for user in users]
-    # [dataframes.append(get_user_ticks(user)) for user in users]
+    [get_user_ticks(user) for user in users]
+    # here I need to do the stats and graph calls
+
+
     [zip_user_folder(user) for user in users]
     [send_mail(user) for user in users]
     return

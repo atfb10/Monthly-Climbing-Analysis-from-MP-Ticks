@@ -16,3 +16,11 @@ class PlotlyGraphMpUserStatistics:
     '''
     def __init__(self, user: MpUser):
         self.user = user
+    
+    def stats(self) -> None:
+        '''
+        arguments: self
+        returns: none
+        description: stats() gathers statistical information and writes it a csv file
+        '''
+        return
