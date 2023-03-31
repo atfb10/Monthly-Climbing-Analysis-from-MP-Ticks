@@ -9,15 +9,13 @@ TODO: REMAINING STEPS
 
 '''
 Graph Ideas
-- Lead Style graphed (onsight, flash, redpoint, fell/hung)
-- Boulder style graphed (flash, send, attempt)
-- Count of days climbing outside vs not
-- Pitches by day
-- crags visited
-- States climbed in
-- Total feet climbed
-- Feet climbed by day
-- Word cloud taken from notes
+- 1a Pitches by day
+- 1b Feet by day
+- 2a Pitches by crag 
+- 2b Feet by crag 
+- 3b Pitches and 
+- 3b Feet by State
+- 4 Word cloud taken from notes
 - Histogram w/ Kernal Density Estimation plot by climbing grades. 
 - Histogram w/ Kernal Density Estimation plot by bouldering grades. 
     NOTE: For two above Option 1: pass in order argument. order takes in a list of column names and displays those along the x-axis in the order. Step 1: Create a list object with order of ascending grades. Step 2: set order = to the list object
@@ -27,6 +25,9 @@ Graph Ideas
 '''
 Text Data Ideas (.csv -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file.
 NOTE: Utilize groupby method extensively!
+- Count of days climbing outside vs not
+- Total feet climbed
+- Total Pitches climbed
 - Number of feet climbed
 - Hardest pitch sent
 - Hardest pitch attempted

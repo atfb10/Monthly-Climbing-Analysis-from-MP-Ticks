@@ -30,15 +30,16 @@ class PlotlyGraph:
         returns: none
         description: graph() calls the graphing methods of self
         '''
-        self.distrubtion_of_quality_routes()
-        self.lead_style_count_graphed()
+        self.__distrubtion_of_quality_routes()
+        self.__lead_style_count_graphed()
+        self.__boulder_style_count_graphed()
         return
     
-    def move_graph_to_user_folder(self, filename) -> None:
+    def __move_graph_to_user_folder(self, filename) -> None:
         '''
         arguments: self, name of file to move
         returns: none
-
+        description: moves graph file to proper folder
         '''
         old_path = f'{PATH_TO_PROJECT}\\{filename}' 
         new_path = f'{PATH_TO_PROJECT}\\user_files\\{self.user.username}\\{filename}'
@@ -47,7 +48,7 @@ class PlotlyGraph:
         os.rename(old_path, new_path)
         return
     
-    def distrubtion_of_quality_routes(self) -> None:
+    def __distrubtion_of_quality_routes(self) -> None:
         '''
         arguments: self
         returns: None
@@ -64,12 +65,12 @@ class PlotlyGraph:
             )
         filename = 'Distribution of Route Quality.html'
         pyo.plot(fig, filename=filename)
-        self.move_graph_to_user_folder(filename)
+        self.__move_graph_to_user_folder(filename)
         return
     
-    def change_to_tr_if_no_lead(self, style: str) -> str:
+    def __change_to_tr_if_no_lead(self, style: str) -> str:
         '''
-        arguments: self
+        arguments: self, string of style type
         returns: original string if not "Not Led", else returns Toprope
         description: changes "Not Led" to toprope
         '''
@@ -77,7 +78,18 @@ class PlotlyGraph:
             style = 'Toprope'
         return style
     
-    def lead_style_count_graphed(self):
+    def __change_to_boulder_terms(self, style: str) -> str:
+        '''
+        arguments: self, string of style type
+        returns: original string if not onsight or redpoint. Else corrects to boulder terminology of flash or send
+        '''
+        if style == 'onsight':
+            style == 'flash'
+        elif style == 'redpoint' or style == 'Lead':
+            style == 'send'
+        return style
+    
+    def __lead_style_count_graphed(self):
         '''
         arguments: self
         returns: None
@@ -85,9 +97,24 @@ class PlotlyGraph:
         '''
         df = self.user.df
         df = df[df['Route Type'] != 'Boulder']
-        df['Lead Style'] = np.vectorize(self.change_to_tr_if_no_lead)(df['Lead Style'])
-        fig = px.histogram(df, x='Lead Style', color='Lead Style', title='Roped Climb Style Count', text_auto=True)
+        df['Lead Style'] = np.vectorize(self.__change_to_tr_if_no_lead)(df['Lead Style'])
+        fig = px.histogram(df, x='Lead Style', color='Style', title='Roped Climb Style Count', text_auto=True)
         filename =  'Roped Climb Style Count.html'
         pyo.plot(fig, filename=filename)
-        self.move_graph_to_user_folder(filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __boulder_style_count_graphed(self):
+        '''
+        arguments: self
+        returns: None
+        description: countplot of number of each boulder style
+        '''
+        df = self.user.df
+        df = df[df['Route Type'] == 'Boulder']
+        df['Style'] = np.vectorize(self.__change_to_boulder_terms)(df['Style'])
+        fig = px.histogram(df, x='Style', color='Style', title='Boulder Style Count', text_auto=True)
+        filename =  'Boulder Style Count.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
         return
