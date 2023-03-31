@@ -17,19 +17,20 @@ from users.user import MpUser
 
 # For testing only
 
-def get_user_ticks(user: MpUser) -> List[pd.DataFrame]:
+def get_user_ticks(user: MpUser) -> None:
     '''
     arguments: MpUser object
     returns: nothing
     description: get_user_ticks() downloads a user's ticks as a csv from mountainproject.com and then moves the csv to the appropriate folder
-                 additionally, it cleans the sets the data field to a pd.datetime field and returns the cleansed dataframe
+                 additionally, it cleans the sets the data field to a pd.datetime field. It assigns the cleaned dataframe to an MpUser object df paremeter
     '''
     df = pd.read_csv(user.user_tick_export_url)
     df = clean_data(df)
     df = add_cols(df)
     df.to_csv(user.csv_filename, index=False)
     move_user_csv(user)
-    return df
+    user.df = df
+    return
 
 def move_user_csv(user: MpUser) -> None:
     '''

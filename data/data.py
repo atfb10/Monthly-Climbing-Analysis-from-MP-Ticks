@@ -27,14 +27,18 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
 def extract_crag(location: str) -> str:
     '''
-    
+    arguments: dataframe of user data
+    returns: the state
+    description: extract_state is a helper method to create th state columns
     '''
     split_locations = location.split(' > ')
     return split_locations[len(split_locations) - 1]
 
 def extract_state(location: str) -> str:
     '''
-    
+    arguments: dataframe of user data
+    returns: the state
+    description: extract_state is a helper method to create th state columns
     '''
     split_locations = location.split(' > ')
     return split_locations[0]
