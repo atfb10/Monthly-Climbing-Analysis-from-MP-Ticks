@@ -18,7 +18,8 @@ class MpUser:
         self.email = email
         self.user_tick_url = f'{self.BASE_URL}{userid}/{username}{self.TICK}'
         self.user_tick_export_url = f'{self.BASE_URL}{userid}/{username}{self.TICK_EXPORT}'
-        self.csv_filename = f'{username}-monthly-ticks.csv'
+        self.csv_filename = f'{username}-ticks.csv'
+        self.csv_montly_filename = f'{username}-monthly-ticks.csv'
         self.df = None
 
     def __repr__(self) -> str:

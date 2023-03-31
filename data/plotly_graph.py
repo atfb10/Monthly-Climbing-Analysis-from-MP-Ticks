@@ -13,6 +13,7 @@ import plotly.figure_factory as ff
 import os
 
 from data.data import (
+    ROCK_CLIMBING_GRADES,
     US_STATE_TO_ABBREVIATION,
     US_STATE_LIST
 )
@@ -44,6 +45,7 @@ class PlotlyGraph:
         # self.__feet_by_date()
         # self.__pitches_by_date()
         self.__routes_by_style()
+        self.__rock_routes_by_grade()
         return
     
     def __move_graph_to_user_folder(self, filename) -> None:
@@ -253,6 +255,24 @@ class PlotlyGraph:
         routes_by_style.columns = ['Type', 'Route Count']
         fig = px.histogram(routes_by_style, x='Type', y='Route Count', color='Type', title='Routes Climbed by Route Type')
         filename =  'Route Counts by Route Type.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __rock_routes_by_grade(self) -> None:
+        '''
+        arguments: self
+        returns: None
+        description: __rock_routes_by_grade shows the number of rock climbs done by grade is ascending order of difficulty on the x-axis
+        '''
+        df = self.user.df
+        df['Rating'] = np.vectorize(lambda rating: rating.strip())(df['Rating'])
+        df = df[df['Rating'].isin(ROCK_CLIMBING_GRADES)]
+        grades = df['Rating'].value_counts()
+        grades = grades.reset_index()
+        grades.columns = ['Grade', 'Number of Routes']
+        fig = px.histogram(grades, x='Grade', y='Number of Routes', color='Grade', title='Number of Rock Routes Climbed by Grade', category_orders={'Grade': ROCK_CLIMBING_GRADES})
+        filename = 'Rock Climb Count by Grade.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
         return
