@@ -4,44 +4,30 @@ TODO: REMAINING STEPS
     a. NOTE (1): filter out to only previous 30 days
     b. NOTE (2): txt file with data aggregated
  2. Logging to txt file
- 3. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come out
+
+ TODO: FUTURE STEPS
+ 1. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come out
 '''
 
 '''
 Graph Ideas
-- 1 
-- 2a Boulder Count by Grade 
-- 3a Route Count by Grade 
-- 4 Word cloud taken from notes
-- Histogram w/ Kernal Density Estimation plot by climbing grades. 
-- Histogram w/ Kernal Density Estimation plot by bouldering grades. 
-    NOTE: For two above Option 1: pass in order argument. order takes in a list of column names and displays those along the x-axis in the order. Step 1: Create a list object with order of ascending grades. Step 2: set order = to the list object
-    NOTE: For two above Option 2: Go to saved url under "coding" folder titled sort column in pandas by specific order for how to do this. Function that creates a dataframe that is sorted by bouldering grade
+- likelihood (percentage) of onsighting/flashing a route of a specific grade
+- Word cloud taken from notes
 '''
 
 '''
 Text Data Ideas (.csv -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file.
 NOTE: Utilize groupby method extensively!
-- Count of days climbing outside vs not
-- Total feet climbed
 - Total Pitches climbed
-- Number of feet climbed
-- Hardest pitch sent
-- Hardest pitch attempted
 - Route climbed the most
 - Boulder climbed the most
-- Average stars of routes you have climbed by MP avg stars
 - Hardest boulder sent
-- Hardest boulder climbed
 - Highest rated MP climb of the month 
 - Lowest rated MP climb of the month
 - List of routes given four stars (your favorites of the month)
 - List of routes given 1 star or a bomb (your least favorite climbs of the month)
-- state with most days climbing at
-- crag with most days climbing at
 - Longest route (by vertical feet)
 - Biggest day of climbing (by vertical feet)
-- likelihood (percentage) of onsighting/flashing a route of a specific grade
 - Challenging: correlation table of route grades send by length, number of pitches, etc
 '''
 
