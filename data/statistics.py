@@ -30,7 +30,12 @@ class MpUserStatistics:
         '''
         hardest_attempt_string = self.__hardest_route_attempt()
         hardest_send_string = self.__hardest_route_sent()
-        total_feet_climbed = self.__total_feet_climbed()
+        total_feet_climbed_string = self.__total_feet_climbed()
+        total_pitches_climbed_string = self.__total_pitches_climbed()
+        best_mp_rated_route_string = self.__best_mp_rated_climb()
+        worst_mp_rated_route_string = self.__worst_mp_rated_climb()
+        four_star_routes_string = self.__four_star_climbs()
+        bomb_climbs_string = self.__bomb_climbs()
         return
     
     def __assign_climbing_grade_numeric(self, grade: str, climbing_grade_dict: dict = ROCK_CLIMBING_GRADES_TO_NUMERIC) -> int:
@@ -110,3 +115,63 @@ class MpUserStatistics:
         df = self.user.df
         feet = df['Length'].sum()
         return str(f'Total Feet Climbed: {feet}')
+    
+    def __total_pitches_climbed(self) -> str:
+        '''
+        arguments: self
+        returns: string of pitches climbed
+        description: __total_pitches_climbed returns total feet climbed as a string
+        '''
+        df = self.user.df
+        p = int(df['Pitches'].sum())
+        return str(f'Total Feet Climbed: {p}')
+    
+    def __best_mp_rated_climb(self) -> str:
+        '''
+        arguments: self
+        returns: string of best climb
+        description: __best_mp_rated_climb returns highest rated mountain project climb
+        '''
+        df = self.user.df
+        df = df.sort_values(by=['Avg Stars'])
+        best_climb = df.iloc[0,]
+        best_climb_name = best_climb['Route']
+        best_climb_stars = best_climb['Avg Stars']
+        return f'Highest Rated MP Route Climbed - {best_climb_name}: {best_climb_stars}'
+    
+    def __worst_mp_rated_climb(self) -> str:
+        '''
+        arguments: self
+        returns: string of worst climb
+        description: __worst_mp_rated_climb returns lowed rated mountain project climb
+        '''
+        df = self.user.df
+        df = df.sort_values(by=['Avg Stars'], ascending=False)
+        worst = df.iloc[0,]
+        worst_climb_name = worst['Route']
+        worst_climb_stars = worst['Avg Stars']
+        return f'Lowest Rated MP Route Climbed - {worst_climb_name}: {worst_climb_stars}'
+    
+    def __four_star_climbs(self) -> str:
+        '''
+        arguments: self
+        returns: string with list of routes user has given 4 stars
+        description: __four_star_climbs shows a user their 4 star climbs
+        '''
+        df = self.user.df
+        df = df[df['Your Stars'] == 4]
+        four_star_routes = df['Route'].tolist()
+        four_star_routes = str(four_star_routes)
+        return f'Your 4 Star Routes: {four_star_routes}'
+    
+    def __bomb_climbs(self) -> str:
+        '''
+        arguments: self
+        returns: string with list of routes user has given 4 stars
+        description: __four_star_climbs shows a user their 4 star climbs
+        '''
+        df = self.user.df
+        df = df[df['Your Stars'] == 0]
+        bombs = df['Route'].tolist()
+        bombs = str(bombs)
+        return f'Your least favorite climbs: {bombs}'

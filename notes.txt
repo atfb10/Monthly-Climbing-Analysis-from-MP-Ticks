@@ -18,17 +18,13 @@ Graph Ideas
 '''
 Text Data Ideas (.csv -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file.
 NOTE: Utilize groupby method extensively!
-- Total Pitches climbed
 - Route climbed the most
 - Boulder climbed the most
 - Hardest boulder sent
-- Highest rated MP climb of the month 
-- Lowest rated MP climb of the month
 - List of routes given four stars (your favorites of the month)
 - List of routes given 1 star or a bomb (your least favorite climbs of the month)
 - Longest route (by vertical feet)
 - Biggest day of climbing (by vertical feet)
-- Challenging: correlation table of route grades send by length, number of pitches, etc
 '''
 
 '''
