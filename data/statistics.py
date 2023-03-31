@@ -36,6 +36,8 @@ class MpUserStatistics:
         worst_mp_rated_route_string = self.__worst_mp_rated_climb()
         four_star_routes_string = self.__four_star_climbs()
         bomb_climbs_string = self.__bomb_climbs()
+        longest_route_string = self.__longest_route_climbed()
+        route_repeated_string = self.__route_climbed_most_times()
         return
     
     def __assign_climbing_grade_numeric(self, grade: str, climbing_grade_dict: dict = ROCK_CLIMBING_GRADES_TO_NUMERIC) -> int:
@@ -63,13 +65,23 @@ class MpUserStatistics:
     def __only_rock_climbing(self) -> pd.DataFrame:
         '''
         arguments: self
-        returns: ordered dataframe with only rock climbs
+        returns: dataframe with only rock climbs
         description: __only_rock_climbing returns a dataframe with only rock climbs
         '''
         df = self.user.df
         df = df[df['Rating'].isin(ROCK_CLIMBING_GRADES)]
         return df
     
+    def __only_bouldering(self) -> pd.DataFrame:
+        '''
+        arguments: self
+        returns:  dataframe with only boulders
+        description: __only_rock_climbing returns a dataframe with only bouldering problems
+        '''
+        df = self.user.df
+        df = df[df['Rating'].isin(BOULDERING_GRADES)]
+        return df
+
     def __only_sends_rock_climbing(self) -> pd.DataFrame:
         '''
         arguments: self
@@ -175,3 +187,49 @@ class MpUserStatistics:
         bombs = df['Route'].tolist()
         bombs = str(bombs)
         return f'Your least favorite climbs: {bombs}'
+    
+    def __longest_route_climbed(self) -> str:
+        '''
+        arguments: self
+        returns: string of longest route you have climbed
+        description: __longest_route_clmbed returns a string of the longest route you have climbed
+        '''
+        df = self.user.df
+        df = df.sort_values(by=['Length'], ascending=False)
+        longest_route = df.iloc[0,]
+        longest_route_name = longest_route['Route']
+        longest_route_distance = longest_route['Length']
+        return f'Your longest route - {longest_route}: {longest_route_distance} feet'
+    
+    def __route_climbed_most_times(self) -> str:
+        '''
+        arguments: self
+        returns: string of route climbed the most time
+        description: __route_climbed_most_times returns the route climbed the most times along with the laps
+        '''
+        df = self.__only_rock_climbing()
+        most_climbed = df['Route'].value_counts().nlargest(1).to_frame()
+        most_climbed.columns = ['Route', 'Times Climbed']
+        most_climbed_name = most_climbed['Route']
+        most_climbed_times = most_climbed['Times Climbed']
+        return f'Most Climbed route - {most_climbed_name}: {most_climbed_times}x'
+    
+    def __hardest_boulder_send(self) -> str:
+        '''
+        arguments: self
+        returns: string of most feet climbed in a day
+        description: __most_feet_in_day returns the most feet in a day a user has climbed, as well as the day
+        '''
+
+    def __boulder_climbed_most_times(self) -> str:
+        '''
+        arguments: self
+        returns: string of route climbed the most time
+        description: __route_climbed_most_times returns the route climbed the most times along with the laps
+        '''
+        df = self.__only_bouldering()
+        most_climbed = df['Route'].value_counts().nlargest(1).to_frame()
+        most_climbed.columns = ['Boulder', 'Times Climbed']
+        most_climbed_name = most_climbed['Boulder']
+        most_climbed_times = most_climbed['Times Climbed']
+        return f'Most Climbed Boulder Problem - {most_climbed_name}: {most_climbed_times}x'
