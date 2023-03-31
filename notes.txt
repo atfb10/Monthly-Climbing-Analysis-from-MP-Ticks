@@ -58,7 +58,7 @@ how I want to do HTML file.
 
 '''
 Future TODO:
-    - Implement MpUserDataframe class that PlotlyGraph and MpUserStatistics inherits from
+    - Move all data cleansing and file moving functions into the User class
     - HTML Statistics table styling
 
 '''
