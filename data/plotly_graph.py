@@ -33,6 +33,7 @@ class PlotlyGraph:
         self.__distrubtion_of_quality_routes()
         self.__lead_style_count_graphed()
         self.__boulder_style_count_graphed()
+        self.__pitches_by_state()
         return
     
     def __move_graph_to_user_folder(self, filename) -> None:
@@ -115,6 +116,22 @@ class PlotlyGraph:
         df['Style'] = np.vectorize(self.__change_to_boulder_terms)(df['Style'])
         fig = px.histogram(df, x='Style', color='Style', title='Boulder Style Count', text_auto=True)
         filename =  'Boulder Style Count.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __pitches_by_state(self):
+        '''
+        arguments: self
+        returns: none
+        description: __pitches_by_state graphs the total number of pitches by state
+        '''
+        df = self.user.df
+        df = df.groupby('Route State').sum()['Pitches']
+        df = df.reset_index()
+        df.columns = ['State', 'Pitch Count']
+        fig = px.histogram(df, x='State', y='Pitch Count', color='State', title='Pitches by State', text_auto=True)
+        filename =  'Pitches by State.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
         return
