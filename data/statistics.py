@@ -256,7 +256,7 @@ class MpUserStatistics:
         returns: string of longest route you have climbed
         description: __longest_route_clmbed returns a string of the longest route you have climbed
         '''
-        df = self.user.df
+        df = self.__only_rock_climbing()
         df = df.sort_values(by=['Length'], ascending=False)
         longest_route = df.iloc[0,]
         longest_route_name = longest_route['Route']
@@ -273,9 +273,9 @@ class MpUserStatistics:
         most_climbed = df['Route'].value_counts().nlargest(1).to_frame()
         most_climbed = most_climbed.reset_index()
         most_climbed.columns = ['Route', 'Times Climbed']
+        most_climbed = most_climbed.iloc[0,]
         most_climbed_name = most_climbed['Route']
         most_climbed_times = most_climbed['Times Climbed']
-        print(most_climbed)
         return f'Most Climbed route - {most_climbed_name}: {most_climbed_times}x'
 
     def __boulder_climbed_most_times(self) -> str:
@@ -288,7 +288,7 @@ class MpUserStatistics:
         most_climbed = df['Route'].value_counts().nlargest(1).to_frame()
         most_climbed = most_climbed.reset_index()
         most_climbed.columns = ['Boulder', 'Times Climbed']
+        most_climbed = most_climbed.iloc[0,]
         most_climbed_name = most_climbed['Boulder']
         most_climbed_times = most_climbed['Times Climbed']
-        print(most_climbed)
         return f'Most Climbed Boulder Problem - {most_climbed_name}: {most_climbed_times}x'
