@@ -75,8 +75,10 @@ class PlotlyGraph:
         '''
         if style == 'onsight':
             style == 'flash'
-        elif style == 'redpoint' or style == 'Lead':
+        elif style == 'redpoint':
             style == 'send'
+        elif style == 'Lead':
+            style = 'send'
         return style
     
     def __lead_style_count_graphed(self):
@@ -88,7 +90,7 @@ class PlotlyGraph:
         df = self.user.df
         df = df[df['Route Type'] != 'Boulder']
         df['Lead Style'] = np.vectorize(self.__change_to_tr_if_no_lead)(df['Lead Style'])
-        fig = px.histogram(df, x='Lead Style', color='Style', title='Roped Climb Style Count', text_auto=True)
+        fig = px.histogram(df, x='Lead Style', color='Lead Style', title='Roped Climb Style Count', text_auto=True)
         filename =  'Roped Climb Style Count.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
