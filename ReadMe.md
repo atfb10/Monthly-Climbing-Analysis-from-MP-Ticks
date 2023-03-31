@@ -6,4 +6,10 @@
 * [virtualenv](https://virtualenv.pypa.io/en/latest/)
 
 ### How to Use
-* In Progress
+* Clone the Repository
+* Create virtual environment
+* Open virtual environment
+* pip install requirements.txt
+* add users by running user_menu.py
+* run the application: app.py
+* the project will run on the first of each month
