@@ -2,8 +2,7 @@
 TODO: REMAINING STEPS
 1. data
     a. NOTE (1): filter out to only previous 30 days
-    b. plotly graphs (generate all graphs using per user @ "once" using threading [not really parallel, but you know what you mean]) 
-    c. NOTE (2): txt file with data aggregated
+    b. NOTE (2): txt file with data aggregated
  2. Logging to txt file
 '''
 

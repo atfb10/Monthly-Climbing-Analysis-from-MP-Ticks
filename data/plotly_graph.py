@@ -34,15 +34,16 @@ class PlotlyGraph:
         returns: none
         description: graph() calls the graphing methods of self
         '''
-        self.__distrubtion_of_quality_routes()
-        self.__lead_style_count_graphed()
-        self.__boulder_style_count_graphed()
-        self.__map_pitches_by_state()
-        self.__pitches_by_crag()
-        self.__feet_by_crag()
-        self.__map_feet_by_state()
-        self.__feet_by_date()
-        self.__pitches_by_date()
+        # self.__distrubtion_of_quality_routes()
+        # self.__lead_style_count_graphed()
+        # self.__boulder_style_count_graphed()
+        # self.__map_pitches_by_state()
+        # self.__pitches_by_crag()
+        # self.__feet_by_crag()
+        # self.__map_feet_by_state()
+        # self.__feet_by_date()
+        # self.__pitches_by_date()
+        self.__routes_by_style()
         return
     
     def __move_graph_to_user_folder(self, filename) -> None:
@@ -81,7 +82,7 @@ class PlotlyGraph:
             style = 'send'
         return style
     
-    def __lead_style_count_graphed(self):
+    def __lead_style_count_graphed(self) -> None:
         '''
         arguments: self
         returns: None
@@ -96,7 +97,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __boulder_style_count_graphed(self):
+    def __boulder_style_count_graphed(self) -> None:
         '''
         arguments: self
         returns: None
@@ -131,7 +132,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __map_pitches_by_state(self):
+    def __map_pitches_by_state(self) -> None:
         with open('D:\\coding\\projects\\mp-user-tick-analysis\\us-states.json') as response:
             states = json.load(response)
         df = self.user.df
@@ -148,7 +149,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __map_feet_by_state(self):
+    def __map_feet_by_state(self) -> None:
         with open('D:\\coding\\projects\\mp-user-tick-analysis\\us-states.json') as response:
             states = json.load(response)
         df = self.user.df
@@ -165,23 +166,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    # def __pitches_by_state(self):
-    #     '''
-    #     arguments: self
-    #     returns: none
-    #     description: __pitches_by_state graphs the total number of pitches by state
-    #     '''
-    #     df = self.user.df
-    #     df = df.groupby('Route State').sum()['Pitches']
-    #     df = df.reset_index()
-    #     df.columns = ['State', 'Pitch Count']
-    #     fig = px.histogram(df, x='State', y='Pitch Count', color='State', title='Pitches by State', text_auto=True)
-    #     filename =  'Pitches by State.html'
-    #     pyo.plot(fig, filename=filename)
-    #     self.__move_graph_to_user_folder(filename)
-    #     return
-    
-    def __pitches_by_crag(self):
+    def __pitches_by_crag(self) -> None:
         '''
         arguments: self
         returns: none
@@ -197,23 +182,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    # def __feet_by_state(self):
-    #     '''
-    #     arguments: self
-    #     returns: none
-    #     description: __pitches_by_state graphs the total number of pitches by state
-    #     '''
-    #     df = self.user.df
-    #     df = df.groupby('Route State').sum()['Length']
-    #     df = df.reset_index()
-    #     df.columns = ['State', 'Feet Climbed']
-    #     fig = px.histogram(df, x='State', y='Feet Climbed', color='State', title='Feet Climbed by State')
-    #     filename =  'Feet by State.html'
-    #     pyo.plot(fig, filename=filename)
-    #     self.__move_graph_to_user_folder(filename)
-    #     return
-    
-    def __feet_by_crag(self):
+    def __feet_by_crag(self) -> None:
         '''
         arguments: self
         returns: none
@@ -229,7 +198,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __pitches_by_date(self):
+    def __pitches_by_date(self) -> None:
         '''
         arguments: self
         returns: none
@@ -245,7 +214,7 @@ class PlotlyGraph:
         self.__move_graph_to_user_folder(filename)
         return
     
-    def __feet_by_date(self):
+    def __feet_by_date(self) -> None:
         '''
         arguments: self
         returns: none
@@ -257,6 +226,23 @@ class PlotlyGraph:
         df.columns = ['Date', 'Feet Climbed']
         fig = px.histogram(df, x='Date', y='Feet Climbed', title='Feet Climbed by Date')
         filename =  'Feet by Date.html'
+        pyo.plot(fig, filename=filename)
+        self.__move_graph_to_user_folder(filename)
+        return
+    
+    def __routes_by_style(self) -> None:
+        '''
+        arguments: self
+        returns: none
+        description: __routes_by_style graphs the total number of routes by style
+        '''
+        df = self.user.df
+        routes_by_style = df['Route Type'].value_counts()
+        routes_by_style = routes_by_style.to_frame()
+        routes_by_style = routes_by_style.reset_index()
+        routes_by_style.columns = ['Type', 'Route Count']
+        fig = px.histogram(routes_by_style, x='Type', y='Route Count', color='Type', title='Routes Climbed by Route Type')
+        filename =  'Route Counts by Route Type.html'
         pyo.plot(fig, filename=filename)
         self.__move_graph_to_user_folder(filename)
         return

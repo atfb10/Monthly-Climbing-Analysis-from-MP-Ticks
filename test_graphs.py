@@ -17,7 +17,6 @@ users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
 [get_user_ticks(user) for user in users]
 # here I need to do the stats and graph calls
 justin = users[2]
-print(justin.df.head())
 justin_graph = PlotlyGraph(justin)
 justin_graph.graph()
 
