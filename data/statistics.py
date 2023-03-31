@@ -13,6 +13,8 @@ from data.data import (
     ROCK_CLIMBING_GRADES,
     ROCK_CLIMBING_GRADES_TO_NUMERIC
 )
+from my_credentials import PATH_TO_PROJECT
+import os
 from users.user import MpUser
 
 class MpUserStatistics:
@@ -30,19 +32,48 @@ class MpUserStatistics:
         returns: none
         description: stats() gathers statistical information and writes it a csv file
         '''
-        hardest_attempt_string = self.__hardest_route_attempt()
-        hardest_send_string = self.__hardest_route_sent()
-        hardest_boulder_send_string = self.__hardest_boulder_sent()
-        total_feet_climbed_string = self.__total_feet_climbed()
-        total_pitches_climbed_string = self.__total_pitches_climbed()
-        best_mp_rated_route_string = self.__best_mp_rated_climb()
-        worst_mp_rated_route_string = self.__worst_mp_rated_climb()
-        four_star_routes_string = self.__four_star_climbs()
-        bomb_climbs_string = self.__bomb_climbs()
-        longest_route_string = self.__longest_route_climbed()
-        route_repeated_string = self.__route_climbed_most_times()
-        boulder_repeated_most_string = self.__boulder_climbed_most_times()
+        strings_to_write = []
+        strings_to_write.append(self.__hardest_route_attempt())
+        strings_to_write.append(self.__hardest_route_sent())
+        strings_to_write.append(self.__hardest_boulder_sent())
+        strings_to_write.append(self.__total_feet_climbed())
+        strings_to_write.append(self.__total_pitches_climbed())
+        strings_to_write.append(self.__best_mp_rated_climb())
+        strings_to_write.append(self.__worst_mp_rated_climb())
+        strings_to_write.append(self.__four_star_climbs())
+        strings_to_write.append(self.__bomb_climbs())
+        strings_to_write.append(self.__longest_route_climbed())
+        strings_to_write.append(self.__route_climbed_most_times())
+        strings_to_write.append(self.__boulder_climbed_most_times())
+        filename = self.user.txt_filename
+        write_file = open(filename, 'w')
+        self.__write_name_by_line(write_file, strings_to_write)
+        write_file.close()
+        self.__move_stats_user_folder(filename)
         return
+    
+    def __move_stats_user_folder(self, filename) -> None:
+        '''
+        arguments: self, name of file to move
+        returns: none
+        description: moves stats file to proper folder
+        '''
+        old_path = f'{PATH_TO_PROJECT}\\{filename}' 
+        new_path = f'{PATH_TO_PROJECT}\\user_files\\{self.user.username}\\{filename}'
+        if os.path.isfile(new_path):
+            os.remove(new_path)
+        os.rename(old_path, new_path)
+        return
+    
+    def __write_name_by_line(self, file, write_set) -> None:
+        index = 0
+        for name in write_set:
+            index += 1
+            if index < len(write_set):
+                file.write(f'{name}\n')
+            else: file.write(f'{name}')
+        return
+
     
     def __assign_climbing_grade_numeric(self, grade: str, climbing_grade_dict: dict = ROCK_CLIMBING_GRADES_TO_NUMERIC) -> int:
         '''
