@@ -44,7 +44,7 @@ class MpUserStatistics:
         strings_to_write.append(self.__bomb_climbs())
         strings_to_write.append(self.__longest_route_climbed())
         strings_to_write.append(self.__route_climbed_most_times())
-        # strings_to_write.append(self.__boulder_climbed_most_times()) # Handle when None
+        strings_to_write.append(self.__boulder_climbed_most_times()) # Handle when None
         filename = self.user.txt_filename
         write_file = open(filename, 'w')
         self.__write_name_by_line(write_file, strings_to_write)
@@ -171,6 +171,8 @@ class MpUserStatistics:
         description: __highest_climbing_send returns a string with hardest route attempted 
         '''
         df = self.__only_bouldering()
+        if df.shape[0] == 0:
+            return
         df['Numeric Grade'] = np.vectorize(self.__assign_bouldering_grade_numeric)(df['Rating'])
         df = df.sort_values(by=['Numeric Grade'], ascending=False)
         df = df[df['Lead Style'].isin(['Send', 'Flash', 'Lead'])]
@@ -284,6 +286,8 @@ class MpUserStatistics:
         description: __route_climbed_most_times returns the route climbed the most times along with the laps
         '''
         df = self.__only_bouldering()
+        if df.shape[0] == 0:
+            return
         most_climbed = df['Route'].value_counts().nlargest(1).to_frame()
         most_climbed = most_climbed.reset_index()
         most_climbed.columns = ['Boulder', 'Times Climbed']

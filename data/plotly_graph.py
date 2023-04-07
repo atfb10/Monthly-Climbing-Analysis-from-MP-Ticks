@@ -107,6 +107,8 @@ class PlotlyGraph:
         '''
         df = self.user.df
         df = df[df['Route Type'] == 'Boulder']
+        if df.shape[0] == 0:
+            return
         df['Style'] = np.vectorize(self.__change_to_boulder_terms)(df['Style'])
         fig = px.histogram(df, x='Style', color='Style', title='Boulder Style Count', text_auto=True)
         filename =  'Boulder Style Count.html'
