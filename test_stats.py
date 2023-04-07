@@ -16,6 +16,6 @@ from users.user import MpUser
 users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
 [get_user_ticks(user) for user in users]
 # here I need to do the stats and graph calls
-adam = users[0]
-adam_stats = MpUserStatistics(adam)
-adam_stats.stats()
+justin = users[2]
+justin_stats = MpUserStatistics(justin)
+justin_stats.stats()

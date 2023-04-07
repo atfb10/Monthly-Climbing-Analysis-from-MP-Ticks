@@ -1,0 +1,10 @@
+Hardest Route Attempted - The Prow: 5.12b
+Hardest Send - Groundhog: 5.11c
+Total Feet Climbed: 224045.0
+Total Feet Climbed: 1511
+Highest Rated MP Route Climbed - Linville Crusher: 4.0
+Lowest Rated MP Route Climbed - Eating Rocks: 1.1
+Your 4 Star Routes: ['Bear Creek Falls', "Gravity's Rainbow", 'Bear Creek Falls', "Alpine Cragger's Delight", 'Party Time! Excellent!', 'This, My Friend', 'North Ridge', 'La Temperatura de Shelf', 'Cinco de Mayo', 'Overhanging Jamcrack', 'Bitless', 'Bitless', 'The Barb', 'Familiar Strangers', 'Empowerment Chimney', 'Empowerment Chimney', 'Dirt Bag', 'Bear Mountain Picnic', 'Dreamscape', 'Dreamscape', 'Dreamscape', 'Fish-eyed Fool', 'In Pursuit of Excellence', 'Long Wall Chimney', 'Fish-eyed Fool', 'Insomniac', 'Dreamscape', 'Fish-eyed Fool']
+Your least favorite climbs: []
+Your longest route - Direct North Ridge: 2800.0 feet
+Most Climbed route - Cake Walk: 4x
