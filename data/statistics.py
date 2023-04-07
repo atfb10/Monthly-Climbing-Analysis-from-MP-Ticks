@@ -35,7 +35,7 @@ class MpUserStatistics:
         strings_to_write = []
         strings_to_write.append(self.__hardest_route_attempt())
         strings_to_write.append(self.__hardest_route_sent())
-        # strings_to_write.append(self.__hardest_boulder_sent()) # Handle when None
+        strings_to_write.append(self.__hardest_boulder_sent()) # Handle when None
         strings_to_write.append(self.__total_feet_climbed())
         strings_to_write.append(self.__total_pitches_climbed())
         strings_to_write.append(self.__best_mp_rated_climb())
@@ -199,7 +199,7 @@ class MpUserStatistics:
         '''
         df = self.user.df
         p = int(df['Pitches'].sum())
-        return str(f'Total Feet Climbed: {p}')
+        return str(f'Total Pitches Climbed: {p}')
     
     def __best_mp_rated_climb(self) -> str:
         '''
