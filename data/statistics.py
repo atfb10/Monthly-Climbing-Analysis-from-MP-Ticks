@@ -35,7 +35,7 @@ class MpUserStatistics:
         strings_to_write = []
         strings_to_write.append(self.__hardest_route_attempt())
         strings_to_write.append(self.__hardest_route_sent())
-        strings_to_write.append(self.__hardest_boulder_sent())
+        # strings_to_write.append(self.__hardest_boulder_sent()) # Handle when None
         strings_to_write.append(self.__total_feet_climbed())
         strings_to_write.append(self.__total_pitches_climbed())
         strings_to_write.append(self.__best_mp_rated_climb())
@@ -44,7 +44,7 @@ class MpUserStatistics:
         strings_to_write.append(self.__bomb_climbs())
         strings_to_write.append(self.__longest_route_climbed())
         strings_to_write.append(self.__route_climbed_most_times())
-        strings_to_write.append(self.__boulder_climbed_most_times())
+        strings_to_write.append(self.__boulder_climbed_most_times()) # Handle when None
         filename = self.user.txt_filename
         write_file = open(filename, 'w')
         self.__write_name_by_line(write_file, strings_to_write)
@@ -171,11 +171,12 @@ class MpUserStatistics:
         description: __highest_climbing_send returns a string with hardest route attempted 
         '''
         df = self.__only_bouldering()
+        if df.shape[0] == 0:
+            return
         df['Numeric Grade'] = np.vectorize(self.__assign_bouldering_grade_numeric)(df['Rating'])
-        df = df.sort_values(by=['Numeric Grade'])
+        df = df.sort_values(by=['Numeric Grade'], ascending=False)
         df = df[df['Lead Style'].isin(['Send', 'Flash', 'Lead'])]
-        num_rows = len(df) - 1
-        hardest_boulder = df.iloc[num_rows,]
+        hardest_boulder = df.iloc[0,]
         route_name = hardest_boulder['Route']
         route_grade = hardest_boulder['Rating']
         return f'Hardest Bouldering Send - {route_name}: {route_grade}'
@@ -207,7 +208,7 @@ class MpUserStatistics:
         description: __best_mp_rated_climb returns highest rated mountain project climb
         '''
         df = self.user.df
-        df = df.sort_values(by=['Avg Stars'])
+        df = df.sort_values(by=['Avg Stars'], ascending=False)
         best_climb = df.iloc[0,]
         best_climb_name = best_climb['Route']
         best_climb_stars = best_climb['Avg Stars']
@@ -220,7 +221,7 @@ class MpUserStatistics:
         description: __worst_mp_rated_climb returns lowed rated mountain project climb
         '''
         df = self.user.df
-        df = df.sort_values(by=['Avg Stars'], ascending=False)
+        df = df.sort_values(by=['Avg Stars'])
         worst = df.iloc[0,]
         worst_climb_name = worst['Route']
         worst_climb_stars = worst['Avg Stars']
@@ -285,6 +286,8 @@ class MpUserStatistics:
         description: __route_climbed_most_times returns the route climbed the most times along with the laps
         '''
         df = self.__only_bouldering()
+        if df.shape[0] == 0:
+            return
         most_climbed = df['Route'].value_counts().nlargest(1).to_frame()
         most_climbed = most_climbed.reset_index()
         most_climbed.columns = ['Boulder', 'Times Climbed']
