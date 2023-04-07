@@ -12,6 +12,8 @@ from helpers.files import (
     get_user_ticks,
     zip_user_folder
     )
+from data.plotly_graph import PlotlyGraph
+from data.statistics import MpUserStatistics
 from users.user import MpUser
 
 # Scheduling
@@ -23,14 +25,18 @@ def job() -> None:
     '''
     if date.today().day != 1:
         return
+
+    # Create objects
     users = [MpUser(user[0], user[1], user[2]) for user in get_users()]
     [get_user_ticks(user) for user in users]
-    # here I need to do the stats and graph calls
+    users_stats = [MpUserStatistics(user) for user in users]
+    users_graphs = [PlotlyGraph(user) for user in users]
 
-
+    # Get stats, graph, zip and send email for objects
+    [user.stats() for user in users_stats]
+    [user.graph() for user in users_graphs]
     [zip_user_folder(user) for user in users]
     [send_mail(user) for user in users]
-    return
 
 # Job will run every day at 6am. It will do nothing except on the first of the month
 schedule.every().day.at('06:00').do(job)
