@@ -332,8 +332,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df['Date'] = pd.to_datetime(df['Date'])
     df['Lead Style'] = df['Lead Style'].fillna('Not Led')
     df['Style'] = df['Style'].fillna('Not Specified')
-    single_p_mean = round(df[df['Pitches'] == 1]['Length'].mean())
-    df['Length'] = df['Length'].fillna(single_p_mean)
+    df['Length'] = df.groupby('Route Type')['Length'].transform(lambda val: val.fillna(val.mean)) # missing route length is determined by calculating the average length of that route type
+    # single_p_mean = round(df[df['Pitches'] == 1]['Length'].mean())
+    # df['Length'] = df['Length'].fillna(single_p_mean)
     return df
 
 def extract_crag(location: str) -> str:

@@ -1,40 +1,16 @@
 '''
 TODO: REMAINING STEPS
- 0. TODO: !!!! Add error handling for if data received is none for methods of the graph and stats classes
- 1. data - filter out to only previous 30 days and craete a separte csv for this file
+ 0. data - filter out only ROCK CLIMBING and BOULDERING. No ice, snow slogs, mixed, etcetera
+ 1. data - filter out to only previous quarter and create a separate csv for this file
  2. Logging to txt file
 
  TODO: FUTURE STEPS
- 1. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come out
+ 1. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come 
+ 2. Update plotly html files to be Dash dashboards. Host my own data on my own website
 '''
 
 '''
-Addiotional Graph Ideas
-- likelihood (percentage) of onsighting/flashing a route of a specific grade
-- statistics by day of the week
+Additional Graph Ideas
+- TODO: average route grade/pitches climbed by style (trad, sport, boulder, multipitch) quarter by quarter (track improvement/regression) - Essentially period to period comparison
 - Word cloud taken from notes
-'''
-
-'''
-Text Data Ideas (.csv -> .html) Iteration 1 = data in a text file. Iteration 2 = table in html file. Iteration 3 -> in a bootstrap styled html file.
-NOTE: Utilize groupby method extensively!
-- Boulder climbed the most
-- Hardest boulder sent
-'''
-
-'''
-how I want to do HTML file.
-1. Create dataframe with all the text data: do this by 
-    a) extracting the values from the dataframe. 
-    b) creating a dictionary object with each key as what the category and each value as the value for that category (example 'num_feet_climbed': length_variable) 
-    c. Pass that dictionary into a dataframe object
-2. Write the dataframe as a .html (iteration 2 = done)
-3. Write the table to a pre-styled html file, and then save that html file for each user
-'''
-
-'''
-Future TODO:
-    - Move all data cleansing and file moving functions into the User class
-    - HTML Statistics table styling
-    - Update plotly html files to be Dash dashboards
 '''
