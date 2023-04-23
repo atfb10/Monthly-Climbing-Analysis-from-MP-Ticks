@@ -8,7 +8,8 @@ TODO: REMAINING STEPS
 
  TODO: FUTURE STEPS
  1. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come 
- 2. Update plotly html files to be Dash dashboards. Host my own data on my own website
+    a.) Start with trying to predict whether someone will send a single pitch route or not based on features
+ 2. Web Version (in my blue "project's" notebook)
 '''
 
 '''
