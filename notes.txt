@@ -1,19 +1,9 @@
 '''
 TODO: REMAINING STEPS
- 0. data - filter out only ROCK CLIMBING and BOULDERING. No ice, snow slogs, mixed, etcetera
  1. data - filter out to only previous quarter and create a separate csv for this file
- 2. Create a column called "sent". Binary 0 = fall. 1 = flash, onsight, or redpoint
- 3. Create a column called "first go". Biinary. 0 = fall or redpoint. 1 = flash or onsight
- 3. Logging to txt file
 
  TODO: FUTURE STEPS
  1. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come 
-    a.) Start with trying to predict whether someone will send a single pitch route or not based on features
+    a.) Start with trying to predict whether someone will send a single pitch route or not based on features - This smells like a random forest, AdaBoost, or XGboost
  2. Web Version (in my blue "project's" notebook)
-'''
-
-'''
-Additional Graph Ideas
-- TODO: average route grade/pitches climbed by style (trad, sport, boulder, multipitch) quarter by quarter (track improvement/regression) - Essentially period to period comparison
-- Word cloud taken from notes
 '''

@@ -335,6 +335,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df['Length'] = df.groupby('Route Type')['Length'].transform(lambda val: val.fillna(val.mean)) # missing route length is determined by calculating the average length of that route type
     # single_p_mean = round(df[df['Pitches'] == 1]['Length'].mean())
     # df['Length'] = df['Length'].fillna(single_p_mean)
+    df = df[(df['Rating'].isin(ROCK_CLIMBING_GRADES)) | (df['Rating'].isin(BOULDERING_GRADES)) | (df['Route Type'].str.contains('Aid'))]
     return df
 
 def extract_crag(location: str) -> str:
@@ -355,6 +356,17 @@ def extract_state(location: str) -> str:
     split_locations = location.split(' > ')
     return split_locations[0]
 
+def first_go(lead_style: str) -> int:
+    '''
+    arguments: dataframe of user data
+    returns: binary - 0 if no flash/os. 1 if flash/os
+    description: first go returns binary value of whether or not climber flashed/onsighted route
+    '''
+    if lead_style == 'Onsight' or lead_style == 'Flash':
+        return 1
+    return 0
+
+
 def add_cols(df: pd.DataFrame) -> pd.DataFrame:
     '''
     arguments: dataframe of user data
@@ -363,4 +375,5 @@ def add_cols(df: pd.DataFrame) -> pd.DataFrame:
     '''
     df['Route Crag'] = np.vectorize(extract_crag)(df['Location'])
     df['Route State'] = np.vectorize(extract_state)(df['Location'])
+    df['First Go'] = np.vectorize(first_go)(df['Lead Style'])
     return df
