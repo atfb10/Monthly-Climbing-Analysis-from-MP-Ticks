@@ -1,16 +1,9 @@
 '''
 TODO: REMAINING STEPS
- 0. data - filter out only ROCK CLIMBING and BOULDERING. No ice, snow slogs, mixed, etcetera
  1. data - filter out to only previous quarter and create a separate csv for this file
- 2. Logging to txt file
 
  TODO: FUTURE STEPS
  1. Use machine learning to predict what grades of routes, types of climbs, number of pitches, etc; that the user is going to do in the next month. Send this the day before their results come 
- 2. Update plotly html files to be Dash dashboards. Host my own data on my own website
-'''
-
-'''
-Additional Graph Ideas
-- TODO: average route grade/pitches climbed by style (trad, sport, boulder, multipitch) quarter by quarter (track improvement/regression) - Essentially period to period comparison
-- Word cloud taken from notes
+    a.) Start with trying to predict whether someone will send a single pitch route or not based on features - This smells like a random forest, AdaBoost, or XGboost
+ 2. Web Version (in my blue "project's" notebook)
 '''
